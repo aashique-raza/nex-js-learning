@@ -1,8 +1,8 @@
-import React from 'react'
+"use client";
+
+import React,{useState} from 'react'
 import Link from 'next/link'
 import styles from './links.module.css'
-import NavLink from './navLink/navLink'
-function Links() {
 
 
     const links=[
@@ -23,12 +23,16 @@ function Links() {
             path:'/blog'
         },
     ]
-
+import NavLink from './navLink/navLink'
+function Links() {
+  const [open, setOpen] = useState(false);
     // temporary
     const session=true;
     const isAdmin=true
 
   return (
+    <div className={styles.container}>
+
     <nav className={styles.links}>
       {links.map((link) => (
         <NavLink item={link} key={link.title}/>
@@ -45,6 +49,19 @@ function Links() {
           <NavLink item={{ title: "Login", path: "/login" }} />
         )}
     </nav>
+    <button>menu</button>
+    {
+      open && (
+        <div className={styles.mobileLinks}>
+            {
+              links.map((link)=(
+                <NavLink item={link} key={link.title} />
+              ))
+            }
+        </div>
+      )
+    }
+    </div>
   )
 }
 
