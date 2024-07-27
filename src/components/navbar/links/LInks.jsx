@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-
+import styles from './links.module.css'
+import NavLink from './navLink/navLink'
 function Links() {
 
 
@@ -23,11 +24,26 @@ function Links() {
         },
     ]
 
+    // temporary
+    const session=true;
+    const isAdmin=true
+
   return (
-    <nav>
+    <nav className={styles.links}>
       {links.map((link) => (
-        <Link href={link.path} key={link.title}>{link.title}</Link>
+        <NavLink item={link} key={link.title}/>
+        
       ))}
+      {session ? (
+          <>
+            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+            {/* <form action={handleLogout}> */}
+              <button className={styles.logout}>Logout</button>
+            {/* </form> */}
+          </>
+        ) : (
+          <NavLink item={{ title: "Login", path: "/login" }} />
+        )}
     </nav>
   )
 }
