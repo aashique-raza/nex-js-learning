@@ -49,13 +49,13 @@ function Links() {
           <NavLink item={{ title: "Login", path: "/login" }} />
         )}
     </nav>
-    <button>menu</button>
+    <button className={styles.menuButton}>menu</button>
     {
       open && (
         <div className={styles.mobileLinks}>
             {
-              links.map((link)=(
-                <NavLink item={link} key={link.title} />
+              links.map((item)=(
+                <NavLink item={item} key={item.title} />
               ))
             }
         </div>
