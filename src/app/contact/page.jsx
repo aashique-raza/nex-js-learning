@@ -1,3 +1,5 @@
+// "use client"
+
 import React from 'react'
 import Image from "next/image";
 import styles from "./contact.module.css";
@@ -12,6 +14,9 @@ export const metadata = {
 }
 
 function ContactPage() {
+
+  // console.log('it is server component by default...')
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
