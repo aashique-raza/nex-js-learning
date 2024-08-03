@@ -5,7 +5,7 @@ import styles from './navbar.module.css'
 function Navbar() {
   return (
     <div className={styles.container}>
-        <div>logo</div>
+        <div className={styles.logo}>logo</div>
         <div>
         <Links/>
         </div>

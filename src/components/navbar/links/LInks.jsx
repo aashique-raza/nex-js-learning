@@ -3,6 +3,8 @@
 import React,{useState} from 'react'
 import Link from 'next/link'
 import styles from './links.module.css'
+import Image from 'next/image';
+import imagesrc from '../../../../public/menu.png'
 
 
     const links=[
@@ -32,35 +34,37 @@ function Links() {
 
   return (
     <div className={styles.container}>
-
-    <nav className={styles.links}>
-      {links.map((link) => (
-        <NavLink item={link} key={link.title}/>
-        
-      ))}
-      {session ? (
+      <div className={styles.links}>
+        {links.map((link) => (
+          <NavLink item={link} key={link.title} />
+        ))}
+        {session ? (
           <>
-            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-            {/* <form action={handleLogout}> */}
+            {session && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+            <form action={handleLogout}>
               <button className={styles.logout}>Logout</button>
-            {/* </form> */}
+            </form>
           </>
         ) : (
           <NavLink item={{ title: "Login", path: "/login" }} />
         )}
-    </nav>
-    <button className={styles.menuButton}>menu</button>
-    {
-      open && (
+      </div>
+      <Image
+        className={styles.menuButton}
+        src="/menu.png"
+        alt=""
+        width={30}
+        height={30}
+        onClick={() => setOpen((prev) => !prev)}
+      />
+      {/* <button style={{fontSize:'50px'}}>menu</button> */}
+      {open && (
         <div className={styles.mobileLinks}>
-            {
-              links.map((item)=(
-                <NavLink item={item} key={item.title} />
-              ))
-            }
+          {links.map((link) => (
+            <NavLink item={link} key={link.title} />
+          ))}
         </div>
-      )
-    }
+      )}
     </div>
   )
 }
